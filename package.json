@@ -11,10 +11,12 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@mermaid-js/mermaid-cli": "^10.1.0",
     "@rocketseat/eslint-config": "^1.2.0",
     "@types/node": "^20.1.4",
     "eslint": "^8.40.0",
     "prisma": "^4.14.0",
+    "prisma-erd-generator": "^1.7.0",
     "tsx": "^3.12.7",
     "typescript": "^5.0.4"
   },
