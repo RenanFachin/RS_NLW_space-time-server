@@ -1,6 +1,7 @@
 import { FastifyInstance } from 'fastify'
 import axios from 'axios'
 import { z } from 'zod'
+import { prisma } from '../lib/prisma'
 
 export async function authRoutes(app: FastifyInstance) {
   app.post('/register', async (request) => {
@@ -50,9 +51,30 @@ export async function authRoutes(app: FastifyInstance) {
       avatar_url: z.string().url(),
     })
 
-    const user = userSchema.parse(userResponse.data)
+    const userInfo = userSchema.parse(userResponse.data)
+
+    // Salvando os dados do usuário no db
+    // 1 validação -> Ver se já existe
+    let user = await prisma.user.findUnique({
+      where: {
+        githubId: userInfo.id,
+      },
+    })
+
+    // Não existindo, criar um novo
+    if (!user) {
+      user = await prisma.user.create({
+        data: {
+          githubId: userInfo.id,
+          login: userInfo.login,
+          name: userInfo.name,
+          avatarUrl: userInfo.avatar_url,
+        },
+      })
+    }
 
     return {
+      // Este retorno de user é o user criado no nosso DB
       user,
     }
   })
