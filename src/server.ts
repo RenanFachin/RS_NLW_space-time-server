@@ -2,8 +2,10 @@ import 'dotenv/config'
 
 import fastify from 'fastify'
 import cors from '@fastify/cors'
+import fastifyJwt from '@fastify/jwt'
 import { memoriesRoutes } from './routes/memories'
 import { authRoutes } from './routes/auth'
+import { env } from './env'
 
 const app = fastify()
 
@@ -12,14 +14,18 @@ app.register(cors, {
   origin: true, // todas URLS de front-end podem acessar o back-end
 })
 
+app.register(fastifyJwt, {
+  secret: env.JWT_SECRET,
+})
+
 // Rotas da aplicação
 app.register(memoriesRoutes)
 app.register(authRoutes)
 
 app
   .listen({
-    port: 3333,
+    port: env.PORT,
   })
   .then(() => {
-    console.log('HTTP server running on http://localhost:3333')
+    console.log(`HTTP server running on http://localhost:${env.PORT}`)
   })

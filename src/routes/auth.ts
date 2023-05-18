@@ -2,6 +2,7 @@ import { FastifyInstance } from 'fastify'
 import axios from 'axios'
 import { z } from 'zod'
 import { prisma } from '../lib/prisma'
+import { env } from '../env'
 
 export async function authRoutes(app: FastifyInstance) {
   app.post('/register', async (request) => {
@@ -20,8 +21,8 @@ export async function authRoutes(app: FastifyInstance) {
       {
         // parâmetro que vai na url
         params: {
-          client_id: process.env.GITHUB_CLIENT_ID,
-          client_secret: process.env.GITHUB_CLIENT_SECRET,
+          client_id: env.GITHUB_CLIENT_ID,
+          client_secret: env.GITHUB_CLIENT_SECRET,
           code,
         },
         // metadados da requisição
@@ -73,9 +74,22 @@ export async function authRoutes(app: FastifyInstance) {
       })
     }
 
+    const token = app.jwt.sign(
+      {
+        // Quais informações que vão estar contidas no token (infos não sensíveis)
+        name: user.name,
+        avatarUrl: user.avatarUrl,
+      },
+      {
+        // Sub é para refererenciar à quem o token é
+        sub: user.id,
+        expiresIn: '7 days',
+      },
+    )
+
     return {
       // Este retorno de user é o user criado no nosso DB
-      user,
+      token,
     }
   })
 }
