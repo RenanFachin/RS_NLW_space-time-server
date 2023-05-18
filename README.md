@@ -18,6 +18,12 @@ Está aplicação foi criada utilizando `NodeJS`, `Typescript`, `Prisma`, `Docke
   - [x] Deve ser possível listar uma memória específica do usuário
   - [x] Deve ser possível atualizar os dados de uma memória
   - [x] Deve ser possível deletar uma memória
+  - [x] Deve ser possível se autenticar utilizando o GITHUB
+
+## Requisitos não funcionais
+  - [x] Os dados da aplicação precisam estar persistidos em um banco PostgreSQL
+  - [x] O usuário deve ser identificado por um JWT (Json Web Token)
+  - [x] Os usuários precisam estar com uma autenticação válida para acessar as rotas '/memories'
 
 
 ## Instalação
@@ -44,6 +50,11 @@ Está aplicação foi criada utilizando `NodeJS`, `Typescript`, `Prisma`, `Docke
 </div>
 
 ## Rotas
+- Autenticação
+```bash
+POST /register
+```
+
 - Criar uma nova memória
 ```bash
 POST /memories
