@@ -51,6 +51,9 @@ Está aplicação foi criada utilizando `NodeJS`, `Typescript`, `Prisma`, `Docke
     <img width="20%" alt="Diagrama ERD" src="./prisma/ERD.svg">
 </div>
 
+## Insomnia
+[![Run in Insomnia}](https://insomnia.rest/images/run.svg)](https://insomnia.rest/run/?label=SpaceTime%20API&uri=https%3A%2F%2Fraw.githubusercontent.com%2FRenanFachin%2FRS_NLW_space-time-server%2Fmain%2FInsomnia_export.json)
+
 ## Rotas
 - Autenticação
 ```bash
