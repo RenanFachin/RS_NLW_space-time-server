@@ -19,12 +19,14 @@ Está aplicação foi criada utilizando `NodeJS`, `Typescript`, `Prisma`, `Docke
   - [x] Deve ser possível atualizar os dados de uma memória
   - [x] Deve ser possível deletar uma memória
   - [x] Deve ser possível se autenticar utilizando o GITHUB
+  - [x] Deve ser possível enviar uma foto/vídeo junto à uma memória
 
 ## Requisitos não funcionais
   - [x] Os dados da aplicação precisam estar persistidos em um banco PostgreSQL
   - [x] O usuário deve ser identificado por um JWT (Json Web Token)
   - [x] Os usuários precisam estar com uma autenticação válida para acessar as rotas '/memories'
-
+  - [x] Gerar nomes aleatórios com no padrão UUID para os arquivos enviados nas memórias
+  - [x] Os arquivos enviados devem ter no máximo 15mb de tamanho
 
 ## Instalação
 ```sh
@@ -78,4 +80,9 @@ PUT /memories/:{id}
 - Deletar UMA memória
 ```bash
 DELETE /memories/:{id}
+```
+
+- Enviar uma imagem ou vídeo
+```bash
+POST /upload/{file}
 ```
