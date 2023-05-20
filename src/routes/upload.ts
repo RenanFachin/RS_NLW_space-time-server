@@ -18,7 +18,7 @@ export async function uploadRoutes(app: FastifyInstance) {
     })
 
     if (!upload) {
-      return reply.status(400).send
+      return reply.status(400).send()
     }
 
     // Verificando se é video ou foto (mimetype)
@@ -29,7 +29,7 @@ export async function uploadRoutes(app: FastifyInstance) {
 
     // Quando não é nem video nem imagem
     if (!isValidFileFormat) {
-      return reply.status(400).send
+      return reply.status(400).send()
     }
 
     // console.log(upload.filename)
